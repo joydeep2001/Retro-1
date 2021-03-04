@@ -1,5 +1,5 @@
 
-const canvas = document.querySelector('#bitmapCreatorCanvas');
+const canvas = document.querySelector('#bitmap-canvas');
 const ctx = canvas.getContext('2d');
 
 let counter = 0;
@@ -33,6 +33,7 @@ canvas.addEventListener('click', (e)=>{
 canvas.addEventListener('mouseover', e=>{
 
 	window.addEventListener('keydown', k=>{
+		k.preventDefault();
 		console.log(k.code);
 		if(k.key == ' '){
 			canvas.style.cursor = "all-scroll";
@@ -47,6 +48,7 @@ canvas.addEventListener('mouseover', e=>{
 
 
 canvas.addEventListener('wheel', (event)=>{
+	event.preventDefault();
 	if(event.deltaY == -100){
 		zoomIn();
 		drawlines();

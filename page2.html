@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Retro</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="CSS/style.css">
+</head>
+<body>
+	<div class=container>
+		<!-- header starts-->
+		<div id="header" class=row>
+			<div id="logo"></div>
+			<div id="drawing-tools"></div>
+			<div id="docs"></div>
+			<div id="project-name"></div>
+			<div id="profile-info"></div>
+		</div>
+		<!-- header ends -->
+
+		
+		<div class="row">
+			<!-- column 1 starts... this portion holds the side-toolbar -->
+			<div id="side-toolbar" class="col">
+				
+			</div>
+			<!-- column 1 ends -->
+
+			<!-- column 2 starts this portion holds the main display screen  -->
+			<div  id="main-screen" class="col">
+				<div id=canvas-cont>
+					<canvas id="main-canvas"></canvas>
+				</div>
+				<div class="btn-cont">
+					<button id="play-pause-btn" class="btn-md">Play/Pause</button>
+					<button id="stop-btn" class="btn-md">Stop</button>
+				</div>
+				<div id="timeline"></div>
+				<button id="getcode-btn" class="btn-lg">Get Code</button>
+			</div>
+			<!-- column 2 ends -->
+
+			<!-- column 3 starts.. this portion contains the bitmap screen elements -->
+			<div id="bitmap-screen" class="col">
+
+				<div id="inner-bitmap-cont">
+					<div id="color-picker"></div>
+					<canvas id="bitmap-canvas"></canvas>
+					<div id="utils-cont">
+						<div class="row">
+							<div class="left-align">
+								<button id="load-btn" class="btn-md">Load</button>
+								<button id="save-btn" class="btn-md">Save</button>
+							</div>
+							<div class="right-align">
+								<button id=resize class="icon-btn">Icon</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- this is the showcase of the saved bitmaps -->
+				<div id="saved-bitmaps"></div>
+			</div>
+		</div>
+		<!-- column 3 ends -->
+
+	</div>
+	<script type="text/javascript" src="JS/bitmap_canvas.js"></script>
+</body>
+</html>

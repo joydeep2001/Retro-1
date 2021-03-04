@@ -1,0 +1,77 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	height: 100vh;
+	width: 100vw;
+}
+#header{
+	height: 10vh;
+	width: 100%;
+	/*Border temporary it may be removed in future and just for visualize purpose*/
+	border: 1px solid black;
+}
+.container{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.row{
+	display: flex;
+	flex-direction: row;
+}
+.col{
+	display: flex;
+	flex-direction: column;
+	/*Border temporary it may be removed in future and just for visualize purpose*/
+	/*border: 1px solid black;*/
+	height: 80vh;
+	align-items: center;
+}
+#side-toolbar{
+	flex:.7;
+}
+#main-screen{
+	flex:1.8;
+	position: relative;
+}
+#bitmap-screen{
+	flex:1;
+}
+#timeline{
+	height: 4vh;
+	width: 80%;
+	border:1px solid #000;
+}
+.btn-cont{
+	display: flex;
+	justify-content: center;
+}
+.left-align{
+	display: flex;
+	justify-content: space-between;
+
+	flex: 1;
+}
+.right-align{
+	display: flex;
+	justify-content: flex-end;
+	flex: 1;
+
+}
+/*Dont Design canvas*/
+canvas{
+	/*border:1px solid #000;*/
+}
+#getcode-btn{
+	position: absolute;
+	top: 90%;
+	left: 2%;
+}
+#canvas-cont{
+	height: 45vh;
+	width: 100%;
+	border:1px solid black;
+
+}
