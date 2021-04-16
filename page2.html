@@ -9,11 +9,19 @@
 	<div class=container>
 		<!-- header starts-->
 		<div id="header" class=row>
-			<div id="logo"></div>
-			<div id="drawing-tools"></div>
-			<div id="docs"></div>
-			<div id="project-name"></div>
-			<div id="profile-info"></div>
+			<div class=col-row>
+				<div id="logo">
+					
+				</div>
+			</div>
+			<div class=col-row>
+				<div id="drawing-tools"></div>
+			</div>
+			<div class=col-row>
+				<div id="docs"></div>
+				<div id="project-name"></div>
+				<div id="profile-info"></div>
+			</div>
 		</div>
 		<!-- header ends -->
 
@@ -28,7 +36,7 @@
 			<!-- column 2 starts this portion holds the main display screen  -->
 			<div  id="main-screen" class="col">
 				<div id=canvas-cont>
-					<canvas id="main-canvas"></canvas>
+					<canvas id="main-canvas" height=200 width=300></canvas>
 				</div>
 				<div class="btn-cont">
 					<button id="play-pause-btn" class="btn-md">Play/Pause</button>
@@ -41,7 +49,6 @@
 
 			<!-- column 3 starts.. this portion contains the bitmap screen elements -->
 			<div id="bitmap-screen" class="col">
-
 				<div id="inner-bitmap-cont">
 					<div id="color-picker"></div>
 					<canvas id="bitmap-canvas"></canvas>
@@ -65,6 +72,6 @@
 		<!-- column 3 ends -->
 
 	</div>
-	<script type="text/javascript" src="JS/bitmap_canvas.js"></script>
+	<script type="module" src="Js/main.js"></script>
 </body>
 </html>
