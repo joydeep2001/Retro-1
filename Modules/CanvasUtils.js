@@ -8,16 +8,16 @@ class CanvasUtils {
     this.ctx = this.canvas.getContext("2d");
     this.drawingTools = new DrawingTools(this.ctx);
     this.erase = false;
-    this.pen = true;
     //top and left will determine that from which
     //index array to which index of the bitmap array
     //will be rendered
-    this.top = 5;
-    this.left = 5;
+    this.top = 0;
+    this.left = 0;
     //dividing by 5 because 5 is minimum zoom level
     let rows = screenSize.x / 5;
     let cols = screenSize.y / 5;
-    console.log(`row = ${rows}, col = ${cols}`);
+    //console.log(`row = ${rows}, col = ${cols}`);
+    //this bitmap array stores the bitmap of the image
     this.bitmap = Array(rows)
       .fill()
       .map(() => Array(cols));
@@ -46,7 +46,7 @@ class CanvasUtils {
       this.screen.resolution.height / this.screen.zoom_level;
     let number_of_vert_lines =
       this.screen.resolution.width / this.screen.zoom_level;
-    console.log(this.screen.zoom_level);
+    //console.log(this.screen.zoom_level);
     this.draw_vert_lines(number_of_vert_lines);
     this.draw_horz_lines(number_of_horz_lines);
   };
@@ -81,36 +81,26 @@ class CanvasUtils {
       this.ctx.stroke();
     }
   };
-  drawBitmap = () => {
+  render = () => {
     this.drawGrids();
-    for (let i = 0; i < 60; i++) {
-      for (let j = 0; j < 60; j++) {
+    for (let i = this.top; i < 30; i++) {
+      for (let j = this.left; j < 60; j++) {
         if (this.bitmap[i][j]) {
           let height = this.screen.zoom_level;
           let width = this.screen.zoom_level;
-          let startX = j * this.screen.zoom_level;
-          let startY = i * this.screen.zoom_level;
+          let startX = (j - this.left) * this.screen.zoom_level;
+          let startY = (i - this.top) * this.screen.zoom_level;
           this.drawingTools.drawPoint(startX, startY, height, width);
         }
       }
     }
   };
-  handleInput = (clickedX, clickedY) => {
-    let height = this.screen.zoom_level;
-    let width = this.screen.zoom_level;
-    clickedX -= this.canvas.getBoundingClientRect().x;
-    clickedY -= this.canvas.getBoundingClientRect().y;
-    let startX =
-      Math.floor(clickedX / this.screen.zoom_level) * this.screen.zoom_level;
-    let startY =
-      Math.floor(clickedY / this.screen.zoom_level) * this.screen.zoom_level;
-    console.log(startX, startY);
-    let index = this.generateIndex(startX, startY);
-    this.bitmap[index.row][index.col] = 1
-    this.drawBitmap(startX, startY, height, width);
-  };
+
+
+
   changeState = (index) => {
-    
+    if (this.erase) return false;
+    return true;
   };
   generateIndex = (x, y) => {
     let col = x / this.screen.zoom_level;

@@ -1,30 +1,41 @@
-import CanvasUtils from "../Modules/CanvasUtils.js";
+import EventHandler from "../Modules/EventHandler.js";
 let isActive = false;
 let keyPressed = false;
 const canvas = "#bitmap-canvas";
-let game = new CanvasUtils(
+const btn = document.getElementById('load-btn');
+let game = new EventHandler(
   canvas,
-  { x: 300, y: 300 },
-  { height: 300, width: 300 }
+  { x: 150, y: 300 },
+  { height: 150, width: 300 }
 );
 
+
+let pos = {x: 0, y: 0};
+
 game.drawGrids();
+
+btn.addEventListener('click',() =>{
+  game.erase = !game.erase;
+});
 
 game.canvas.addEventListener("click", (e) => {
   if (!keyPressed) game.handleInput(e.clientX, e.clientY);
 });
 
 game.canvas.addEventListener("mousedown", (e) => {
-  console.log("active");
   isActive = true;
+  pos.x = e.clientX;
+  pos.y = e.clientY;
 });
 
 game.canvas.addEventListener("mousemove", (e) => {
   if (isActive && !keyPressed) {
-    console.log(e.offsetX, e.offsetY);
-    if (e.offsetX > 300 && e.offsetY > 150) isActive = false;
-
     game.handleInput(e.clientX, e.clientY);
+  }
+  else if(isActive && keyPressed) {
+    pos.x = e.clientX;
+    pos.y = e.clientY;
+    game.handleDrag(pos, e.clientX, e.clientY);
   }
 });
 game.canvas.addEventListener("mouseup", (e) => {
@@ -35,7 +46,6 @@ game.canvas.addEventListener("mouseover", (e) => {
   window.addEventListener("keydown", (k) => {
     keyPressed = true;
     k.preventDefault();
-    console.log(k.code);
     if (k.key == " ") {
       game.canvas.style.cursor = "all-scroll";
     }
@@ -49,10 +59,6 @@ game.canvas.addEventListener("mouseover", (e) => {
 
 game.canvas.addEventListener("wheel", (event) => {
   event.preventDefault();
-  if (event.deltaY == -100) {
-    game.zoomIn();
-  } else {
-    game.zoomOut();
-  }
-  game.drawBitmap();
+  game.handleZoom(event.deltaY);
 });
+

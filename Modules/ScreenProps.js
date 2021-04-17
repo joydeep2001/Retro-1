@@ -8,7 +8,7 @@ class ScreenProps{
 		this.resolution = resolution;
 		this.rows = Math.round(this.screen_size.y);
 		this.cols = Math.round(this.screen_size.x);	
-		console.log(resolution);
+		//console.log(resolution);
 	}
 	
 }

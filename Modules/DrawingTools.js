@@ -1,5 +1,5 @@
 
-//not in use
+
 class DrawingTools {
   constructor(ctx) {
 	this.ctx = ctx;
@@ -10,7 +10,7 @@ class DrawingTools {
     this.ctx.fillRect(x, y, height, width);
     this.ctx.stroke();
   };
-  removePoint = (x, y) => {};
+  
 }
 
 export default DrawingTools;

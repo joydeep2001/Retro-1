@@ -1,46 +1,40 @@
-class EventHandler
+import CanvasUtils from "./CanvasUtils.js";
 
-canvas.addEventListener('click', (e)=>{
-	handleInput(e.clientX, e.clientY);
-	
-});
+class EventHandler extends CanvasUtils {
+  handleInput = (clickedX, clickedY) => {
+    let height = this.screen.zoom_level;
+    let width = this.screen.zoom_level;
+    clickedX -= this.canvas.getBoundingClientRect().x;
+    clickedY -= this.canvas.getBoundingClientRect().y;
+    let startX =
+      Math.floor(clickedX / this.screen.zoom_level) * this.screen.zoom_level;
+    startX += this.left * this.screen.zoom_level;
+    let startY =
+      Math.floor(clickedY / this.screen.zoom_level) * this.screen.zoom_level;
+    startY += this.top * this.screen.zoom_level;
 
+    console.log(startX, startY);
+    let index = this.generateIndex(startX, startY);
+    this.bitmap[index.row][index.col] = this.changeState();
+    this.render();
+  };
+  handleDrag = (pos, x, y) => {
+    if (pos.x < x + 10) this.left++;
+    else if (pos.x > x + 10) this.left--;
+    if (pos.y < y + 10) this.top++;
+    else if (pos.y > y + 10) this.top--;
+    console.log(pos.x, x, pos.y, y);
+    this.render();
+  };
+  handleZoom = (deltaY) => {
+    if (deltaY == -100) {
+      this.zoomIn();
+    } else {
+      this.zoomOut();
+    }
+    this.render();
+  };
+  
+}
 
-canvas.addEventListener('click', (e)=>{
-	
-	let color = ctx.getImageData(e.clientX, e.clientY, 1, 1);
-	
-});
-
-
-
-canvas.addEventListener('mouseover', e=>{
-
-	window.addEventListener('keydown', k=>{
-		k.preventDefault();
-		console.log(k.code);
-		if(k.key == ' '){
-			canvas.style.cursor = "all-scroll";
-		}
-	});
-	
-	window.addEventListener('keyup', ()=>{
-		canvas.style.cursor = null;
-	});
-});
-
-
-
-canvas.addEventListener('wheel', (event)=>{
-	event.preventDefault();
-	if(event.deltaY == -100){
-		zoomIn();
-		drawlines();
-
-	}
-	else{
-		zoomOut();
-		drawlines();
-	}
-	
-});
+export default EventHandler;
